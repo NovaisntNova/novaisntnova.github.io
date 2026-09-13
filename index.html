@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nova的博客</title>
+<title>Nova's Blog</title>
 <style>
   :root {
     --nav-bg: #f7efd9;
@@ -255,7 +255,7 @@
 <!-- ===== 顶部导航 ===== -->
 <header class="nav">
   <div class="nav-inner">
-    <a class="site-name" href="#/">NovaTechBlog</a>
+    <a class="site-name" href="#/">Nova's Blog</a>
     <nav class="nav-links">
       <a href="#/" data-nav="home">HOME</a>
       <a href="#/archives" data-nav="archives">ARCHIVES</a>
@@ -270,12 +270,12 @@
 
 <!-- ===== 页脚 ===== -->
 <footer class="footer">
-  <div>© 2026 NovaTechBlog · 示例博客</div>
+  <div>© 2026 Nova's Blog · 示例博客</div>
   <div class="domain">https://nova.github.io/</div>
 </footer>
 
 <script>
-/* ===== 示例文章数据(交付后可按真实内容替换) ===== */
+/* ===== 1 ===== */
 var POSTS = [
   {
     id: "welcome-to-cybersecurity",
@@ -284,15 +284,7 @@ var POSTS = [
     category: "基础知识",
     tags: ["网络安全", "入门"],
     body: [
-      { t: "p", x: "I'm here, ready for the Cybersecurity world" },
-  {
-    id: "second-post",
-    title: "第二篇文章(标题待定)",
-    date: "2026-09-20",
-    category: "基础知识",
-    tags: [],
-    body: [
-      { t: "p", x: "本文为占位文章,标题与内容待定,敬请期待。" }
+      { t: "p", x: "I'm here, ready for the Cybersecurity world." }
     ]
   }
 ];
@@ -303,7 +295,7 @@ var app = document.getElementById("app");
 function renderHome() {
   var html = '';
   html += '<section class="hero">';
-  html += '<h1>Nova的博客</h1>';
+  html += '<h1>Nova\'s Blog</h1>';
   html += '<p>关注:基础知识</p>';
   html += '</section>';
   html += '<div class="container"><div class="post-list">';
@@ -315,7 +307,7 @@ function renderHome() {
   });
   html += '</div></div>';
   app.innerHTML = html;
-  document.title = "Nova的博客";
+  document.title = "Nova's Blog";
 }
 
 function renderPost(id) {
@@ -345,11 +337,11 @@ function renderPost(id) {
     }
   });
   html += '</div>';
-  html += '<div class="post-note">本文为示例文章,仅用于演示页面效果。</div>';
+  html += '<div class="post-note"></div>';
   html += '<a class="back-link" href="#/">← 返回首页</a>';
   html += '</div>';
   app.innerHTML = html;
-  document.title = p.title + " | Nova的博客";
+  document.title = p.title + " | Nova's Blog";
 }
 
 function groupByYear() {
@@ -377,7 +369,7 @@ function renderArchives() {
   });
   html += '</div>';
   app.innerHTML = html;
-  document.title = "归档 | Nova的博客";
+  document.title = "归档 | Nova's Blog";
 }
 
 function collectTags() {
@@ -411,7 +403,7 @@ function renderTags() {
   });
   html += '</div></div>';
   app.innerHTML = html;
-  document.title = "标签 | Nova的博客";
+  document.title = "标签 | Nova's Blog";
 }
 
 function renderCategories() {
@@ -425,7 +417,7 @@ function renderCategories() {
   });
   html += '</div></div>';
   app.innerHTML = html;
-  document.title = "分类 | Nova的博客";
+  document.title = "分类 | Nova's Blog";
 }
 
 function renderTagPosts(tag) {
@@ -451,7 +443,7 @@ function renderFiltered(title, list) {
   });
   html += '</div></div>';
   app.innerHTML = html;
-  document.title = title + " | Nova的博客";
+  document.title = title + " | Nova's Blog";
 }
 
 function escapeHtml(s) {
