@@ -165,13 +165,6 @@
     font-size: 13px;
   }
   .post-body pre code { background: none; padding: 0; }
-  .post-note {
-    margin-top: 34px;
-    font-size: 13px;
-    color: #a3966f;
-    border-top: 1px dashed #d9cdab;
-    padding-top: 14px;
-  }
   .back-link {
     display: inline-block;
     margin-top: 26px;
@@ -270,8 +263,8 @@
 
 <!-- ===== 页脚 ===== -->
 <footer class="footer">
-  <div>© 2026 Nova's Blog · 示例博客</div>
-  <div class="domain">https://nova.github.io/</div>
+  <div>© 2026 Nova's Blog</div>
+  <div class="domain">https://novaisntnova.github.io/</div>
 </footer>
 
 <script src="posts.js"></script>
@@ -324,7 +317,6 @@ function renderPost(id) {
     }
   });
   html += '</div>';
-  html += '<div class="post-note">本文为示例文章,仅用于演示页面效果。</div>';
   html += '<a class="back-link" href="#/">← 返回首页</a>';
   html += '</div>';
   app.innerHTML = html;
