@@ -1,7 +1,515 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <title>Nova’s Blog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova的博客</title>
+<style>
+  :root {
+    --nav-bg: #f7efd9;
+    --nav-border: #e8ddbb;
+    --hero-bg: #f3e4b0;
+    --hero-sub: #7a6b42;
+    --text: #3d3826;
+    --muted: #8c8163;
+    --link: #4a3d22;
+    --code-bg: #f7f1e0;
+    --code-border: #e7dcbd;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    color: var(--text);
+    background: #fbf7ea;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ===== 导航栏 ===== */
+  .nav {
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .site-name {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 18px; }
+  .nav-links a {
+    font-size: 13px;
+    color: #6f654a;
+    letter-spacing: 0.5px;
+    padding: 4px 2px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease;
+  }
+  .nav-links a:hover { color: #3a3320; }
+  .nav-links a.active { color: #3a3320; border-bottom-color: #3a3320; }
+  .nav-icon {
+    display: inline-flex;
+    align-items: center;
+    color: #6f654a;
+  }
+
+  /* ===== Hero 区 ===== */
+  .hero {
+    background: var(--hero-bg);
+    color: #4a3d22;
+    text-align: center;
+    padding: 74px 20px 70px;
+  }
+  .hero h1 {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    font-size: 15px;
+    color: var(--hero-sub);
+    letter-spacing: 1px;
+  }
+
+  /* ===== 内容容器 ===== */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ===== 文章列表 ===== */
+  .post-list { padding: 34px 0 48px; }
+  .post-item {
+    display: block;
+    padding: 22px 0;
+    border-bottom: 1px solid #ece2c4;
+    transition: padding-left 0.15s ease;
+  }
+  .post-item:last-child { border-bottom: none; }
+  .post-item:hover { padding-left: 8px; }
+  .post-title {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .post-item:hover .post-title { text-decoration: underline; }
+  .post-date {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ===== 文章详情 ===== */
+  .post-detail { padding: 40px 0 56px; }
+  .post-detail .post-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .post-meta {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+  }
+  .post-meta .tag {
+    color: #6f654a;
+    background: #f3ecd6;
+    padding: 1px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  .post-meta .tag:hover { background: #ece1c4; }
+  .post-body { font-size: 15px; }
+  .post-body p { margin-bottom: 18px; text-align: justify; }
+  .post-body h3 {
+    font-size: 17px;
+    margin: 28px 0 12px;
+    padding-left: 10px;
+    border-left: 3px solid #c2a354;
+  }
+  .post-body ul { margin: 0 0 18px 22px; }
+  .post-body li { margin-bottom: 6px; }
+  .post-body pre {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .post-body code {
+    font-family: Consolas, "Courier New", monospace;
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .post-body pre code { background: none; padding: 0; }
+  .post-note {
+    margin-top: 34px;
+    font-size: 13px;
+    color: #a3966f;
+    border-top: 1px dashed #d9cdab;
+    padding-top: 14px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 26px;
+    font-size: 14px;
+    color: #6f654a;
+  }
+  .back-link:hover { color: #3a3320; text-decoration: underline; }
+
+  /* ===== 归档 / 标签 / 分类页 ===== */
+  .page { padding: 34px 0 48px; }
+  .page h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .page-desc { font-size: 13px; color: var(--muted); margin-bottom: 26px; }
+  .archive-year { margin-bottom: 26px; }
+  .archive-year h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .archive-year ul { list-style: none; }
+  .archive-year li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f3ecd6;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .archive-year li a { font-size: 15px; }
+  .archive-year li a:hover { text-decoration: underline; }
+  .archive-year .d { font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .chip-wrap { display: flex; flex-wrap: wrap; gap: 12px; }
+  .chip {
+    display: inline-block;
+    background: #f3ecd6;
+    border: 1px solid #e0d5b0;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .chip:hover { background: #ece1c4; border-color: #d8c89a; }
+  .chip .cnt { color: var(--muted); font-size: 12px; margin-left: 4px; }
+
+  /* ===== 页脚 ===== */
+  .footer {
+    border-top: 1px solid var(--nav-border);
+    background: var(--nav-bg);
+    padding: 20px 0 26px;
+    text-align: center;
+    font-size: 13px;
+    color: #a3966f;
+  }
+  .footer .domain {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    color: #8c8163;
+  }
+
+  /* ===== 移动端适配 ===== */
+  @media (max-width: 560px) {
+    .hero { padding: 52px 16px 48px; }
+    .hero h1 { font-size: 26px; }
+    .hero p { font-size: 13px; }
+    .nav-inner { padding: 0 14px; }
+    .nav-links { gap: 12px; }
+    .nav-links a { font-size: 12px; }
+    .post-title { font-size: 17px; }
+    .post-detail .post-title { font-size: 21px; }
+    .archive-year li { flex-direction: column; gap: 2px; }
+  }
+</style>
 </head>
+<body>
+
+<!-- ===== 顶部导航 ===== -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="site-name" href="#/">NovaTechBlog</a>
+    <nav class="nav-links">
+      <a href="#/" data-nav="home">HOME</a>
+      <a href="#/archives" data-nav="archives">ARCHIVES</a>
+      <a href="#/tags" data-nav="tags">TAGS</a>
+      <a href="#/categories" data-nav="categories">CATEGORIES</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== 视图容器 ===== -->
+<main id="app"></main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  <div>© 2026 NovaTechBlog · 示例博客</div>
+  <div class="domain">https://nova.github.io/</div>
+</footer>
+
+<script>
+/* ===== 示例文章数据(交付后可按真实内容替换) ===== */
+var POSTS = [
+  {
+    id: "welcome-to-cybersecurity",
+    title: "迎接网安挑战",
+    date: "2026-09-13",
+    category: "基础知识",
+    tags: ["网络安全", "入门"],
+    body: [
+      { t: "p", x: "I'm here, ready for the Cybersecurity world" },
+  {
+    id: "second-post",
+    title: "第二篇文章(标题待定)",
+    date: "2026-09-20",
+    category: "基础知识",
+    tags: [],
+    body: [
+      { t: "p", x: "本文为占位文章,标题与内容待定,敬请期待。" }
+    ]
+  }
+];
+
+/* ===== 路由与渲染 ===== */
+var app = document.getElementById("app");
+
+function renderHome() {
+  var html = '';
+  html += '<section class="hero">';
+  html += '<h1>Nova的博客</h1>';
+  html += '<p>关注:基础知识</p>';
+  html += '</section>';
+  html += '<div class="container"><div class="post-list">';
+  POSTS.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).forEach(function (p) {
+    html += '<a class="post-item" href="#/post/' + p.id + '">';
+    html += '<div class="post-title">' + p.title + '</div>';
+    html += '<div class="post-date">' + p.date + '</div>';
+    html += '</a>';
+  });
+  html += '</div></div>';
+  app.innerHTML = html;
+  document.title = "Nova的博客";
+}
+
+function renderPost(id) {
+  var p = null;
+  for (var i = 0; i < POSTS.length; i++) { if (POSTS[i].id === id) { p = POSTS[i]; break; } }
+  if (!p) { renderHome(); return; }
+  var html = '<div class="container post-detail">';
+  html += '<h1 class="post-title">' + p.title + '</h1>';
+  html += '<div class="post-meta">';
+  html += '<span>' + p.date + '</span>';
+  html += '<span>分类:' + p.category + '</span>';
+  p.tags.forEach(function (t) {
+    html += '<a class="tag" href="#/tags/' + encodeURIComponent(t) + '">' + t + '</a>';
+  });
+  html += '</div>';
+  html += '<div class="post-body">';
+  p.body.forEach(function (b) {
+    if (b.t === "p") { html += '<p>' + b.x + '</p>'; }
+    else if (b.t === "h") { html += '<h3>' + b.x + '</h3>'; }
+    else if (b.t === "ul") {
+      html += '<ul>';
+      b.x.forEach(function (li) { html += '<li>' + li + '</li>'; });
+      html += '</ul>';
+    }
+    else if (b.t === "code") {
+      html += '<pre><code>' + escapeHtml(b.x) + '</code></pre>';
+    }
+  });
+  html += '</div>';
+  html += '<div class="post-note">本文为示例文章,仅用于演示页面效果。</div>';
+  html += '<a class="back-link" href="#/">← 返回首页</a>';
+  html += '</div>';
+  app.innerHTML = html;
+  document.title = p.title + " | Nova的博客";
+}
+
+function groupByYear() {
+  var map = {};
+  POSTS.forEach(function (p) {
+    var y = p.date.slice(0, 4);
+    if (!map[y]) { map[y] = []; }
+    map[y].push(p);
+  });
+  var years = Object.keys(map).sort(function (a, b) { return a < b ? 1 : -1; });
+  return { years: years, map: map };
+}
+
+function renderArchives() {
+  var g = groupByYear();
+  var html = '<div class="container page">';
+  html += '<h2>归档</h2>';
+  html += '<p class="page-desc">共 ' + POSTS.length + ' 篇文章</p>';
+  g.years.forEach(function (y) {
+    html += '<div class="archive-year"><h3>' + y + '</h3><ul>';
+    g.map[y].slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).forEach(function (p) {
+      html += '<li><a href="#/post/' + p.id + '">' + p.title + '</a><span class="d">' + p.date + '</span></li>';
+    });
+    html += '</ul></div>';
+  });
+  html += '</div>';
+  app.innerHTML = html;
+  document.title = "归档 | Nova的博客";
+}
+
+function collectTags() {
+  var map = {};
+  POSTS.forEach(function (p) {
+    p.tags.forEach(function (t) {
+      if (!map[t]) { map[t] = 0; }
+      map[t]++;
+    });
+  });
+  return map;
+}
+
+function collectCategories() {
+  var map = {};
+  POSTS.forEach(function (p) {
+    if (!map[p.category]) { map[p.category] = 0; }
+    map[p.category]++;
+  });
+  return map;
+}
+
+function renderTags() {
+  var map = collectTags();
+  var html = '<div class="container page">';
+  html += '<h2>标签</h2>';
+  html += '<p class="page-desc">按主题浏览文章</p>';
+  html += '<div class="chip-wrap">';
+  Object.keys(map).forEach(function (t) {
+    html += '<a class="chip" href="#/tags/' + encodeURIComponent(t) + '">' + t + '<span class="cnt">' + map[t] + '</span></a>';
+  });
+  html += '</div></div>';
+  app.innerHTML = html;
+  document.title = "标签 | Nova的博客";
+}
+
+function renderCategories() {
+  var map = collectCategories();
+  var html = '<div class="container page">';
+  html += '<h2>分类</h2>';
+  html += '<p class="page-desc">按栏目浏览文章</p>';
+  html += '<div class="chip-wrap">';
+  Object.keys(map).forEach(function (c) {
+    html += '<a class="chip" href="#/categories/' + encodeURIComponent(c) + '">' + c + '<span class="cnt">' + map[c] + '</span></a>';
+  });
+  html += '</div></div>';
+  app.innerHTML = html;
+  document.title = "分类 | Nova的博客";
+}
+
+function renderTagPosts(tag) {
+  var list = POSTS.filter(function (p) { return p.tags.indexOf(tag) !== -1; });
+  renderFiltered("标签:" + tag, list);
+}
+
+function renderCategoryPosts(cat) {
+  var list = POSTS.filter(function (p) { return p.category === cat; });
+  renderFiltered("分类:" + cat, list);
+}
+
+function renderFiltered(title, list) {
+  var html = '<div class="container page">';
+  html += '<h2>' + title + '</h2>';
+  html += '<p class="page-desc">共 ' + list.length + ' 篇文章</p>';
+  html += '<div class="post-list" style="padding-top:6px">';
+  list.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).forEach(function (p) {
+    html += '<a class="post-item" href="#/post/' + p.id + '">';
+    html += '<div class="post-title">' + p.title + '</div>';
+    html += '<div class="post-date">' + p.date + '</div>';
+    html += '</a>';
+  });
+  html += '</div></div>';
+  app.innerHTML = html;
+  document.title = title + " | Nova的博客";
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function setNavActive(route) {
+  var links = document.querySelectorAll(".nav-links a[data-nav]");
+  links.forEach(function (a) {
+    a.classList.remove("active");
+  });
+  var map = { "home": "home", "archives": "archives", "tags": "tags", "categories": "categories" };
+  var active = null;
+  if (route.view === "post") { active = "home"; }
+  else if (map[route.view]) { active = map[route.view]; }
+  else if (route.view === "tag") { active = "tags"; }
+  else if (route.view === "category") { active = "categories"; }
+  if (active) {
+    var el = document.querySelector('.nav-links a[data-nav="' + active + '"]');
+    if (el) { el.classList.add("active"); }
+  }
+}
+
+function parseHash() {
+  var raw = location.hash.replace(/^#\/?/, "");
+  var parts = raw.split("/").filter(function (s) { return s !== ""; });
+  if (parts.length === 0) { return { view: "home" }; }
+  if (parts[0] === "post" && parts[1]) { return { view: "post", id: parts[1] }; }
+  if (parts[0] === "archives") { return { view: "archives" }; }
+  if (parts[0] === "tags") {
+    if (parts[1]) { return { view: "tag", tag: decodeURIComponent(parts[1]) }; }
+    return { view: "tags" };
+  }
+  if (parts[0] === "categories") {
+    if (parts[1]) { return { view: "category", cat: decodeURIComponent(parts[1]) }; }
+    return { view: "categories" };
+  }
+  return { view: "home" };
+}
+
+function router() {
+  var route = parseHash();
+  setNavActive(route);
+  switch (route.view) {
+    case "home": renderHome(); break;
+    case "post": renderPost(route.id); break;
+    case "archives": renderArchives(); break;
+    case "tags": renderTags(); break;
+    case "tag": renderTagPosts(route.tag); break;
+    case "categories": renderCategories(); break;
+    case "category": renderCategoryPosts(route.cat); break;
+    default: renderHome();
+  }
+  window.scrollTo(0, 0);
+}
+
+window.addEventListener("hashchange", router);
+router();
+</script>
+</body>
 </html>
