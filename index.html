@@ -274,21 +274,8 @@
   <div class="domain">https://nova.github.io/</div>
 </footer>
 
+<script src="posts.js"></script>
 <script>
-/* ===== 1 ===== */
-var POSTS = [
-  {
-    id: "welcome-to-cybersecurity",
-    title: "迎接网安挑战",
-    date: "2026-09-13",
-    category: "基础知识",
-    tags: ["网络安全", "入门"],
-    body: [
-      { t: "p", x: "I'm here, ready for the Cybersecurity world." }
-    ]
-  }
-];
-
 /* ===== 路由与渲染 ===== */
 var app = document.getElementById("app");
 
@@ -299,7 +286,7 @@ function renderHome() {
   html += '<p>关注:基础知识</p>';
   html += '</section>';
   html += '<div class="container"><div class="post-list">';
-  POSTS.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).forEach(function (p) {
+  POSTS.slice().sort(function (a, b) { return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0); }).forEach(function (p) {
     html += '<a class="post-item" href="#/post/' + p.id + '">';
     html += '<div class="post-title">' + p.title + '</div>';
     html += '<div class="post-date">' + p.date + '</div>';
@@ -337,7 +324,7 @@ function renderPost(id) {
     }
   });
   html += '</div>';
-  html += '<div class="post-note"></div>';
+  html += '<div class="post-note">本文为示例文章,仅用于演示页面效果。</div>';
   html += '<a class="back-link" href="#/">← 返回首页</a>';
   html += '</div>';
   app.innerHTML = html;
@@ -362,7 +349,7 @@ function renderArchives() {
   html += '<p class="page-desc">共 ' + POSTS.length + ' 篇文章</p>';
   g.years.forEach(function (y) {
     html += '<div class="archive-year"><h3>' + y + '</h3><ul>';
-    g.map[y].slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).forEach(function (p) {
+    g.map[y].slice().sort(function (a, b) { return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0); }).forEach(function (p) {
       html += '<li><a href="#/post/' + p.id + '">' + p.title + '</a><span class="d">' + p.date + '</span></li>';
     });
     html += '</ul></div>';
@@ -435,7 +422,7 @@ function renderFiltered(title, list) {
   html += '<h2>' + title + '</h2>';
   html += '<p class="page-desc">共 ' + list.length + ' 篇文章</p>';
   html += '<div class="post-list" style="padding-top:6px">';
-  list.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).forEach(function (p) {
+  list.slice().sort(function (a, b) { return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0); }).forEach(function (p) {
     html += '<a class="post-item" href="#/post/' + p.id + '">';
     html += '<div class="post-title">' + p.title + '</div>';
     html += '<div class="post-date">' + p.date + '</div>';
