@@ -46,9 +46,9 @@ var POSTS = [
       { t: "p", x: "解题思路" },
       { t: "p", x: "-点进去看到一大堆滑稽表情包迎来，且涌现速度加快，想到第一次做计算机任务时学习到的方法，按键ctrol+U看到网源代码，再按ctrol+F进行搜索flag得出答案" }
     ]
-  }
-];
-id: "writeup-3",
+  },  
+  {
+     id: "writeup-3",
     title: "第三篇 write up",
     date: "2026-09-14",
     category: "基础知识",
