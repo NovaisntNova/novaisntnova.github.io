@@ -65,4 +65,31 @@ var POSTS = [
     ]
   }
 ];
+     id: "writeup-4",
+    title: "第四篇 write up",
+    date: "2026-09-15",
+    category: "基础知识",
+    tags: ["writeup"],
+    body: [
+      { t: "p", x: "题目信息" },
+      { t: "p", x: "题目名称:你必须让他停下" },
+      { t: "p", x: "类型:Web" },
+      { t: "p", x: "分值:10分" },
+      { t: "p", x: "作者:harry" },
+      { t: "p", x: "描述:你必须让他停下" },
+      { t: "p", x: "解题思路" },
+      { t: "p", x: "-点进去发现界面刷新，看见提示文字要求看到熊猫图片时才能得到flag，发现只有flag is here这句废话，依旧按键ctrol+U不断尝试发现只有在10jpg时能够得出正确flag，寻求方法发现使用脚本powershell运行代码$url = "http://160.202.254.160:18424/"
+while ($true) {
+    $html = curl.exe -s $url
+    # 只要 <a> 标签里出现 flag{...} 就打印并停
+    if ($html -match '<a [^>]*>(flag\{[^}]+\})</a>') {
+        Write-Host "`n*** 抓到了！***"
+        Write-Host $matches[1]
+        break
+    }
+}
+也可行" }
+    ]
+  }
+];
 
