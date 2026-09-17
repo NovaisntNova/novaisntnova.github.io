@@ -46,7 +46,7 @@ var POSTS = [
       { t: "p", x: "解题思路" },
       { t: "p", x: "-点进去看到一大堆滑稽表情包迎来，且涌现速度加快，想到第一次做计算机任务时学习到的方法，按键ctrol+U看到网源代码，再按ctrol+F进行搜索flag得出答案" }
     ]
-  },  
+  },
   {
      id: "writeup-3",
     title: "第三篇 write up",
@@ -78,18 +78,9 @@ var POSTS = [
       { t: "p", x: "作者:harry" },
       { t: "p", x: "描述:你必须让他停下" },
       { t: "p", x: "解题思路" },
-      { t: "p", x: "-点进去发现界面刷新，看见提示文字要求看到熊猫图片时才能得到flag，发现只有flag is here这句废话，依旧按键ctrol+U不断尝试发现只有在10jpg时能够得出正确flag，寻求方法发现使用脚本powershell运行代码$url = "http://160.202.254.160:18424/"
-while ($true) {
-    $html = curl.exe -s $url
-    # 只要 <a> 标签里出现 flag{...} 就打印并停
-    if ($html -match '<a [^>]*>(flag\{[^}]+\})</a>') {
-        Write-Host "`n*** 抓到了！***"
-        Write-Host $matches[1]
-        break
-    }
-}
-也可行" }
+      { t: "p", x: "-点进去发现界面刷新，看见提示文字要求看到熊猫图片时才能得到flag，发现只有flag is here这句废话，依旧按键ctrol+U不断尝试发现只有在10jpg时能够得出正确flag，寻求方法发现使用脚本powershell运行代码" },
+      { t: "code", x: "$url = \"http://160.202.254.160:18424/\"\nwhile ($true) {\n    $html = curl.exe -s $url\n    # 只要 <a> 标签里出现 flag{...} 就打印并停\n    if ($html -match '<a [^>]*>(flag\\{[^}]+\\})</a>') {\n        Write-Host \"`n*** 抓到了！***\"\n        Write-Host $matches[1]\n        break\n    }\n}" },
+      { t: "p", x: "也可行" }
     ]
   }
 ];
-
