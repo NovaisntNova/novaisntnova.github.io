@@ -63,8 +63,8 @@ var POSTS = [
       { t: "p", x: "解题思路" },
       { t: "p", x: "-点进去flag就在这里的不断弹窗，依旧按键ctrol+U看到网源代码，再按ctrol+F进行搜索flag发现并没有真正的flag，而是藏到了HTML注释里面，复制去到HTML实体转换器内解码得出正确flag" }
     ]
-  }
-];
+  },
+   {
      id: "writeup-4",
     title: "第四篇 write up",
     date: "2026-09-15",
