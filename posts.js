@@ -82,5 +82,30 @@ var POSTS = [
       { t: "code", x: "$url = \"http://160.202.254.160:18424/\"\nwhile ($true) {\n    $html = curl.exe -s $url\n    # 只要 <a> 标签里出现 flag{...} 就打印并停\n    if ($html -match '<a [^>]*>(flag\\{[^}]+\\})</a>') {\n        Write-Host \"`n*** 抓到了！***\"\n        Write-Host $matches[1]\n        break\n    }\n}" },
       { t: "p", x: "也可行" }
     ]
-  }
-];
+  },
+   {
+  id: "writeup-5",
+  title: "Bugku 头等舱",
+  date: "2026-10-06",
+  category: "基础知识",
+  tags: ["writeup"],
+  body: [
+    { t: "h", x: "题目信息" },
+    { t: "p", x: "题目名称：头等舱" },
+    { t: "p", x: "类型：Web" },
+    { t: "p", x: "分值：15分" },
+    { t: "p", x: "作者：harry" },
+
+    { t: "h", x: "题目分析" },
+    { t: "p", x: "点进去页面空白，查看页面源代码无内容。题目名字「头等舱」是提示，head=HTTP头部，flag藏在HTTP响应头中。" },
+    { t: "p", x: "HTTP响应头是服务器返回给浏览器的附加信息，网页正文看不见。" },
+
+    { t: "h", x: "解题方法：浏览器F12开发者工具" },
+    { t: "p", x: "1. 打开网页，按F12，切换到【网络】标签" },
+    { t: "p", x: "2. 勾选保留日志，Ctrl+R刷新页面" },
+    { t: "p", x: "3. 点击捕获到的请求，右侧查看【响应头 Response Headers】，下翻找到flag" },
+
+    { t: "h", x: "知识点总结" },
+    { t: "p", x: "CTF Web题，名字带头/head/header，优先检查HTTP响应头，网页空白不代表没有信息。" }
+  ]
+},
