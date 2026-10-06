@@ -64,7 +64,7 @@ var POSTS = [
       { t: "p", x: "-点进去flag就在这里的不断弹窗，依旧按键ctrol+U看到网源代码，再按ctrol+F进行搜索flag发现并没有真正的flag，而是藏到了HTML注释里面，复制去到HTML实体转换器内解码得出正确flag" }
     ]
   },
-   {
+  {
      id: "writeup-4",
     title: "Bugku 你必须让它停下",
     date: "2026-09-15",
@@ -82,7 +82,7 @@ var POSTS = [
       { t: "code", x: "$url = \"http://160.202.254.160:18424/\"\nwhile ($true) {\n    $html = curl.exe -s $url\n    # 只要 <a> 标签里出现 flag{...} 就打印并停\n    if ($html -match '<a [^>]*>(flag\\{[^}]+\\})</a>') {\n        Write-Host \"`n*** 抓到了！***\"\n        Write-Host $matches[1]\n        break\n    }\n}" },
       { t: "p", x: "也可行" }
     ]
-  },
+   },
    {
      id: "writeup-5",
     title: "Bugku 头等舱",
