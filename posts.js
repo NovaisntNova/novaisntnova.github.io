@@ -15,7 +15,7 @@ var POSTS = [
   },
   {
     id: "writeup-1",
-    title: "第一篇 write up",
+    title: "Bugku 计算机",
     date: "2026-09-13",
     category: "基础知识",
     tags: ["writeup"],
@@ -32,7 +32,7 @@ var POSTS = [
   },
   {
     id: "writeup-2",
-    title: "第二篇 write up",
+    title: "Bugku 滑稽",
     date: "2026-09-14",
     category: "基础知识",
     tags: ["writeup"],
@@ -49,7 +49,7 @@ var POSTS = [
   },
   {
      id: "writeup-3",
-    title: "第三篇 write up",
+    title: "Bugku alert",
     date: "2026-09-14",
     category: "基础知识",
     tags: ["writeup"],
@@ -66,7 +66,7 @@ var POSTS = [
   },
    {
      id: "writeup-4",
-    title: "第四篇 write up",
+    title: "Bugku 你必须让它停下",
     date: "2026-09-15",
     category: "基础知识",
     tags: ["writeup"],
