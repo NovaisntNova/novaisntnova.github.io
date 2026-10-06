@@ -108,4 +108,4 @@ var POSTS = [
     { t: "h", x: "知识点总结" },
     { t: "p", x: "CTF Web题，名字带头/head/header，优先检查HTTP响应头，网页空白不代表没有信息。" }
   ]
-},
+}
