@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Bugku | 你必须让他停下"
-date: 2026-11-19
+date: 2026-09-15
 categories: [Bugku]
 tags: [Web, writeup, 页面刷新]
 ---
