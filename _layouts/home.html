@@ -1,0 +1,40 @@
+---
+layout: default
+---
+<style>
+/* 奶油米色配色 */
+body {
+  background-color: #fff9ea !important;
+  color: #2c2620 !important;
+}
+.site-header {
+  background-color: #f2e9d8 !important;
+  border-bottom: 1px solid #e4d9c6 !important;
+}
+.site-footer {
+  background-color: #f2e9d8 !important;
+  border-top: 1px solid #e4d9c6 !important;
+}
+a {
+  color: #594b3a !important;
+}
+</style>
+
+<div class="home">
+  {%- if site.posts.size > 0 -%}
+    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+    <ul class="post-list">
+      {%- for post in site.posts -%}
+      <li>
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        <h3>
+          <a class="post-link" href=" ">
+            {{ post.title | escape }}
+          </a >
+        </h3>
+      </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
