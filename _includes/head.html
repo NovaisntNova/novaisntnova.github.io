@@ -1,0 +1,9 @@
+<head>
+{% if page.title %}
+  <title>{{ page.title }} | {{ site.title }}</title>
+{% else %}
+  <title>{{ site.title }}</title>
+{% endif %}
+{% include meta.html %}
+<link rel="stylesheet" href="{{ "/assets/css/override.css" | relative_url }}">
+</head>
