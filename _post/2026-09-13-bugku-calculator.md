@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Bugku | 计算器"
-date: 2026-11-19
+date: 2026-09-13
 categories: [Bugku]
 tags: [Web, writeup, 前端源码泄露]
 ---
