@@ -1,0 +1,19 @@
+/* 奶油米色背景 */
+body {
+  background-color: #fff9ea !important;
+  color: #2c2620 !important;
+}
+/* 导航栏（header）暖米色 */
+.site-header {
+  background-color: #f2e9d8 !important;
+  border-bottom: 1px solid #e4d9c6 !important;
+}
+/* 页脚 */
+.site-footer {
+  background-color: #f2e9d8 !important;
+  border-top: 1px solid #e4d9c6 !important;
+}
+/* 链接颜色改成深棕 */
+a {
+  color: #594b3a !important;
+}
