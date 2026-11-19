@@ -1,0 +1,25 @@
+theme: minima
+title: Nova’s blog
+description: 网安学习记录｜CTF刷题｜靶场Writeup
+author: Nova
+
+# 导航栏（顶部菜单）
+header_pages:
+  - README.md
+
+# 首页展示文章摘要
+show_excerpts: true
+
+# 时区，保证文章时间正确
+timezone: Asia/Shanghai
+
+# Markdown渲染配置，支持代码块、GFM语法
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# 开启标签、分类
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
