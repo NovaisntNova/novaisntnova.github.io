@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Bugku | alert"
-date: 2026-09-14
+date: 2026-09-15
 categories: [Bugku]
 tags: [Web, writeup, js弹窗]
 ---
