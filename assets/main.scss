@@ -2,7 +2,13 @@
 ---
 @import "minima";
 
-$background-color: #fff3d9;
-$header-bg: #f0dfbc;
-$text-color: #2c2620;
+/* 新版minima可用变量 */
+$base-background-color: #fff3d9;
+$base-text-color: #2c2620;
+$site-header-background-color: #f0dfbc;
+$site-header-border-color: #e2d0aa;
 $link-color: #594b3a;
+
+body {
+  background: $base-background-color;
+}
