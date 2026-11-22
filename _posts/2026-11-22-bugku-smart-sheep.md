@@ -1,3 +1,14 @@
+---
+layout: post
+title: Bugku | 聪明的小羊
+date: 2026-11-22 10:00:00
+categories: Bugku
+tags:
+  - Crypto
+  - writeup
+  - 栅栏密码
+---
+
 | layout | post |
 | :--- | :--- |
 | **title** | Bugku \| 聪明的小羊 |
