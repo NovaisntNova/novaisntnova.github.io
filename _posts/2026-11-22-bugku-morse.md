@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bugku | /.- 摩尔斯密码
+title: Bugku | /.-
 date: 2026-11-22
 categories: Bugku
 tags: [Crypto, writeup, 摩尔斯密码]
