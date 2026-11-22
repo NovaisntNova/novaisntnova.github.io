@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bugku | source Git源码泄露
+title: Bugku | source
 date: 2026-11-21
 categories: Bugku
 tags: [Web, writeup, 源码泄露, git泄露]
