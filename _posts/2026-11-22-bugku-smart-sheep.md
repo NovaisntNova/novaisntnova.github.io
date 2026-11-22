@@ -3,43 +3,42 @@ layout: post
 title: Bugku | 聪明的小羊
 date: 2026-11-22
 categories: Bugku
-tags: [Crypto, writeup, 栅栏密码]
+tags:
+  - Crypto
+  - writeup
+  - 栅栏密码
 ---
 
-| layout | post |
-| ---- | ---- |
-| title | Bugku | 聪明的小羊 |
-| date | 2026-11-22 |
-| categories | Bugku |
-| tags | Crypto writeup 栅栏密码 |
-
 ## 一、题目简介
+
 Crypto古典密码题，题目名字为聪明的小羊，加密方式为栅栏密码，解密得到flag。
 
 ## 二、环境信息
-靶场地址：https://ctf.bugku.com/
+
+靶场地址：
+[https://ctf.bugku.com/](https://ctf.bugku.com/) 
 类型：Crypto 栅栏密码
 
 ## 三、复现步骤
-1. 获取题目给出的密文：'fa{fe13f590lg6d46d0d0}'，本题是2栏栅栏密码。
+
+1. 获取题目给出的密文：`fa{fe13f590lg6d46d0d0}`，本题是2栏栅栏密码。
 2. 栅栏密码属于换位密码，只调换字符顺序，不替换字符。
-3. 使用2栏栅栏解密脚本进行解密。
-4. 得到明文'6fde4163df05d900'，整理为flag{}格式提交。
+3. 使用2栏栅栏解密脚本进行解密（脚本略）。
+4. 得到明文 `6fde4163df05d900`，整理为flag{}格式提交。
 
-Python解密脚本（2栏栅栏）：
-```python
-def rail2_decrypt(cipher):
-    n = len(cipher)
-    mid = (n + 1) // 2
-    part1 = cipher[:mid]
-    part2 = cipher[mid:]
-    res = []
-    for a,b in zip(part1, part2):
-        res.append(a)
-        res.append(b)
-    if len(part1) > len(part2):
-        res.append(part1[-1])
-    return ''.join(res)
+## 四、原理分析
 
-ciphertext = "th{ae}fglag"
-print(rail2_decrypt(ciphertext))
+栅栏密码（Rail Fence Cipher）属于换位密码（Transposition Cipher），其核心思想是不改变明文字符本身，而是通过改变字符的排列顺序来实现加密。
+
+对于本题的 **2栏栅栏密码**，其加密过程是将明文按顺序交替放入两个“栅栏”（即分成两组）。假设明文为 `abcdef`，则第一栏为 `ace`，第二栏为 `bdf`，拼接后得到密文 `acebdf`。
+
+解密过程则是加密的逆过程：
+1. 根据密文长度 `n`，计算第一栏的长度 `mid = (n + 1) // 2`（若长度为奇数，第一栏多一个字符）。
+2. 将密文切分为前半部分 `part1` 和后半部分 `part2`。
+3. 交替读取 `part1` 和 `part2` 的字符，重新组合。如果 `part1` 比 `part2` 长，最后再补上 `part1` 的最后一个字符，即可还原出明文。
+
+## 五、安全小结
+
+在网络安全领域，古典密码（如栅栏密码、凯撒密码等）仅作为密码学入门的基础概念。因其加密强度极低，且容易被频率分析或暴力破解（如利用脚本穷举栏数），在现代实际应用中**严禁用于保护任何敏感数据**。
+
+在CTF竞赛中，此类题目主要考察选手对密码学基础原理的理解以及编写简单脚本进行解密的能力。在实际开发中，对于需要保密的数据传输，应使用AES、RSA等现代密码学算法；对于用户密码存储，则应使用加盐的哈希算法（如 bcrypt、Argon2 等），以确保数据的机密性和安全性。
