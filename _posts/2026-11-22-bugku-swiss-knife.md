@@ -1,3 +1,15 @@
+---
+layout: post
+title: Bugku | 瑞士军刀
+date: 2026-11-22 11:00:00
+categories: Bugku
+tags:
+  - PWN
+  - writeup
+  - nc
+  - netcat
+---
+
 | layout | post |
 | :--- | :--- |
 | **title** | Bugku \| 瑞士军刀 |
