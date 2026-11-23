@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Bugku ｜ 瑞士军刀"
-date: 2026-11-22 13:00:00
+date: 2026-11-22
 categories: Bugku
 tags:
   - PWN
