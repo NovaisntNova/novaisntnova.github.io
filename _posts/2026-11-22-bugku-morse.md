@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Bugku | /.-"
-date: 2026-11-22 15:00:00
+date: 2026-11-22 15:00:01
 categories: Bugku
 tags:
   - Crypto
